@@ -24,7 +24,7 @@ jobs:
             #      ssh-keygen -l -f ~/.ssh/id_rsa
             - name: Rebuild /api
               run: |
-                  test -f typedoc || git clone git@github.com:TypeStrong/typedoc.git
+                  git clone https://github.com/TypeStrong/typedoc.git
                   cd typedoc
                   git pull
                   git checkout $(git describe --tags --abbrev=0)
