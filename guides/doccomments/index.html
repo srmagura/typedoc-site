@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,8 @@
 </head>
 
 
-  <body>
-    <header>
+    <body>
+        <header>
     <div class="container">
         <a href="/" class="logo">TypeDoc</a>
         <nav>
@@ -39,12 +39,10 @@
 </header>
 
 
-    <section class="content" id="content">
-      
+        <section class="content" id="content">
 <div class="container main">
-  <div class="row">
-    <div class="col-sm-2">
-      <nav class="navigation">
+    <div class="row">
+        <div class="col-sm-2"><nav class="navigation">
   <ul>
     
       <li >
@@ -81,10 +79,8 @@
     
   </ul>
 </nav>
-
-    </div>
-    <div class="col-sm-7 typography">
-      <h1 id="document-your-code" tabindex="-1">Document your code</h1>
+</div>
+        <div class="col-sm-7 typography"><h1 id="document-your-code" tabindex="-1">Document your code</h1>
 <p>TypeDoc runs the TypeScript compiler and extracts type information from the generated compiler symbols.
 Therefore you don't have to include additional metadata within your comments, TypeScript specific elements
 like classes, enumerations or property types and access modifiers will be automatically detected.</p>
@@ -99,7 +95,7 @@ to provide syntax highlighting.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token comment">/**<br> * Code blocks are great for examples<br> *<br> * ```typescript<br> * // run typedoc --help for a list of supported languages<br> * const instance = new MyClass();<br> * ```<br> */</span><br><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">MyClass</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre>
 <h3 id="symbol-references" tabindex="-1">Symbol References</h3>
 <p>You can link to other classes, members or functions using double square brackets or an inline link tag.</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="token comment">/**<br> * Standard links:<br> * {@link Foo} or {@linkplain Foo} or [[Foo]]<br> *<br> * Code links: (Puts Foo inside &lt;code> tags)<br> * {@linkcode Foo} or [[`Foo`]]<br> */</span><br><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Bar</span> <span class="token keyword">implements</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><br><br><span class="token comment">/** More details */</span><br><span class="token keyword">interface</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><br>  member<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-typescript"><code class="language-typescript"><span class="token comment">/**<br> * Standard links:<br> * {@link Foo} or {@linkplain Foo} or [[Foo]]<br> *<br> * Code links: (Puts Foo inside &lt;code> tags)<br> * {@linkcode Foo} or [[`Foo`]]<br> */</span><br><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">Bar</span> <span class="token keyword">implements</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><br><br><span class="token comment">/** More details */</span><br><span class="token keyword">interface</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><br>    member<span class="token operator">:</span> <span class="token builtin">boolean</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
 <p>Links may also specify their link text by including a pipe (<code>|</code>) character after the name.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token comment">/**<br> * The {@link Foo | Foo interface}<br> * The [[Foo | Foo interface]]<br> */</span></code></pre>
 <p>Links are resolved by looking at child reflections, then at adjacent reflections, then at parent reflections.
@@ -146,21 +142,22 @@ on writing these types.</p>
 <h3 id="%40public%2C-%40protected%2C-and-%40private" tabindex="-1"><code>@public</code>, <code>@protected</code>, and <code>@private</code></h3>
 <p>These modifier tags are supported for overriding the visibility of documented items. Their use is discouraged as they do not conform to the TSDoc
 standard and they may be removed in a future release.</p>
+<h3 id="%40enum" tabindex="-1"><code>@enum</code></h3>
+<p>If present on an object with string literal values, TypeDoc will convert the variable as an enumeration instead.</p>
+<pre class="language-ts"><code class="language-ts"><span class="token comment">/**<br> * This will be displayed as an enumeration.<br> * @enum<br> */</span><br><span class="token keyword">export</span> <span class="token keyword">const</span> MyEnum <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token comment">/**<br>     * Doc comments may be included here.<br>     */</span><br>    <span class="token constant">A</span><span class="token operator">:</span> <span class="token string">"a"</span><span class="token punctuation">,</span><br>    <span class="token constant">B</span><span class="token operator">:</span> <span class="token string">"b"</span><span class="token punctuation">,</span><br><span class="token punctuation">}</span> <span class="token keyword">as</span> <span class="token keyword">const</span><span class="token punctuation">;</span><br><br><span class="token comment">/**<br> * This works too, but is more verbose<br> * @enum<br> */</span><br><span class="token keyword">export</span> <span class="token keyword">const</span> MyEnum2<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token constant">A</span><span class="token operator">:</span> <span class="token string">"a"</span> <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token constant">A</span><span class="token operator">:</span> <span class="token string">"a"</span> <span class="token punctuation">}</span></code></pre>
 <h2 id="files" tabindex="-1">Files</h2>
 <p>A doc comment describing a file must be placed before any code in the file.
 It should be annotated with the <code>@module</code> tag so that TypeDoc knows that it is intended to be documentation for the file itself.</p>
 <p>If TypeDoc guesses a module's name incorrectly, you can override it with the <code>@module</code> by specifying text after the tag name.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token comment">// file1.ts</span><br><span class="token comment">/**<br> * This is the doc comment for file1.ts<br> *<br> * Specify this is a module comment and rename it to my-module:<br> * @module my-module<br> * Specify this is a module comment without renaming it:<br> * @module<br> */</span><br><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> lib <span class="token keyword">from</span> <span class="token string">"lib"</span><span class="token punctuation">;</span><br><br><span class="token comment">// file2.ts</span><br><span class="token comment">/**<br> * This is *not* a doc comment for the file, it is a doc comment for the import.<br> * Include the module or packageDocumentation tag to mark it as a file comment.<br> */</span><br><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> lib <span class="token keyword">from</span> <span class="token string">"lib"</span><span class="token punctuation">;</span><br><br><span class="token comment">// file3.ts</span><br><span class="token comment">/**<br> * File doc comment for file3.ts<br> * @packageDocumentation<br> */</span><br><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> lib <span class="token keyword">from</span> <span class="token string">"lib"</span><span class="token punctuation">;</span><br><br><span class="token comment">// file4.ts (deprecated, prefer @module or @packageDocumentation)</span><br><span class="token comment">/**<br> * File doc comment for file3.ts<br> */</span><br><span class="token comment">/**<br> * dummy comment so that TypeDoc does not associate the comment with the import<br> */</span><br><span class="token keyword">import</span> <span class="token operator">*</span> <span class="token keyword">as</span> lib <span class="token keyword">from</span> <span class="token string">"lib"</span><span class="token punctuation">;</span></code></pre>
-
-    </div>
-    <div class="col-sm-3 toc-container"></div>
-  </div>
 </div>
+        <div class="col-sm-3 toc-container"></div>
+    </div>
+</div>
+</section>
 
-    </section>
-
-    <footer>
+        <footer>
 </footer>
 
-  </body>
+    </body>
 </html>

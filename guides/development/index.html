@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,8 @@
 </head>
 
 
-  <body>
-    <header>
+    <body>
+        <header>
     <div class="container">
         <a href="/" class="logo">TypeDoc</a>
         <nav>
@@ -39,12 +39,10 @@
 </header>
 
 
-    <section class="content" id="content">
-      
+        <section class="content" id="content">
 <div class="container main">
-  <div class="row">
-    <div class="col-sm-2">
-      <nav class="navigation">
+    <div class="row">
+        <div class="col-sm-2"><nav class="navigation">
   <ul>
     
       <li >
@@ -81,10 +79,8 @@
     
   </ul>
 </nav>
-
-    </div>
-    <div class="col-sm-7 typography">
-      <h1 id="development" tabindex="-1">Development</h1>
+</div>
+        <div class="col-sm-7 typography"><h1 id="development" tabindex="-1">Development</h1>
 <p>This page is a work in progress overview of TypeDoc's architecture.
 For more details about each individual component, refer to the doc comments within each module.
 It is intended primarily for those interested in contributing to the TypeDoc codebase or developing a plugin.</p>
@@ -110,7 +106,7 @@ Output is split into two folders, for JSON output see the <code>src/lib/serializ
 <p>Plugins may effect any part of the process after step 2 by listening to events fired by each component or adding / replacing handlers for a given task.
 As an example, the <a href="https://typedoc.org/api/classes/converter.html">Converter</a> fires events before starting conversion, when declarations are converted and when the project should be resolved.</p>
 <h2 id="tests" tabindex="-1">Tests</h2>
-<p>TypeDoc has tests for individual utilities and some components, but the majority of the project is tested by converting source files into their JSON model and comparing it to a known good version. The basic example under <code>examples/basic</code> is rendered to HTML to test theme changes.</p>
+<p>TypeDoc has tests for individual utilities and some components, but the majority of the project is tested by converting source files into their JSON model and comparing it to a known good version. The basic example under <code>src/test/renderer/testProject</code> is rendered to HTML to test theme changes.</p>
 <p>If changing the behavior of a converter or resolver, it should be possible to modify one of the existing tests under <code>src/test/converter</code>.
 Bug fixes or feature additions which need to change one of the <code>specs*.json</code> files should run <code>npm run rebuild_specs [converter|renderer] [converter filter]</code> to run the current build of TypeDoc on the source files and generate new specs.
 For other components, we use <a href="https://mochajs.org/">Mocha</a> to write tests.</p>
@@ -138,7 +134,7 @@ The <a href="https://typedoc.org/api/classes/options.html">Options</a> class con
 <h3 id="plugins" tabindex="-1">Plugins</h3>
 <p>Plugins should export a <code>load</code> function which will be called by TypeDoc when loading the plugin with an instance of <code>PluginHost</code>.
 This function should add any options the plugin accepts and add any listeners necessary to effect TypeDoc's behavior.</p>
-<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Application<span class="token punctuation">,</span> ParameterType<span class="token punctuation">,</span> Converter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typedoc"</span><span class="token punctuation">;</span><br><br><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">load</span><span class="token punctuation">(</span>app<span class="token operator">:</span> Application<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    app<span class="token punctuation">.</span>options<span class="token punctuation">.</span><span class="token function">addDeclaration</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>        name<span class="token operator">:</span> <span class="token string">"plugin-option"</span><span class="token punctuation">,</span><br>        help<span class="token operator">:</span> <span class="token string">"Displayed when --help is passed"</span><span class="token punctuation">,</span><br>        <span class="token keyword">type</span><span class="token operator">:</span> ParameterType<span class="token punctuation">.</span>String<span class="token punctuation">,</span> <span class="token comment">// The default</span><br>        defaultValue<span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment">// The default</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    app<span class="token punctuation">.</span>converter<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span>Converter<span class="token punctuation">.</span><span class="token constant">EVENT_RESOLVE</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>app<span class="token punctuation">.</span>options<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token string">"plugin-option"</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">"something"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token comment">// ...</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
+<pre class="language-typescript"><code class="language-typescript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Application<span class="token punctuation">,</span> ParameterType<span class="token punctuation">,</span> Converter <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">"typedoc"</span><span class="token punctuation">;</span><br><br><span class="token keyword">export</span> <span class="token keyword">function</span> <span class="token function">load</span><span class="token punctuation">(</span>app<span class="token operator">:</span> Application<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    app<span class="token punctuation">.</span>options<span class="token punctuation">.</span><span class="token function">addDeclaration</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>        name<span class="token operator">:</span> <span class="token string">"plugin-option"</span><span class="token punctuation">,</span><br>        help<span class="token operator">:</span> <span class="token string">"Displayed when --help is passed"</span><span class="token punctuation">,</span><br>        type<span class="token operator">:</span> ParameterType<span class="token punctuation">.</span>String<span class="token punctuation">,</span> <span class="token comment">// The default</span><br>        defaultValue<span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token comment">// The default</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    app<span class="token punctuation">.</span>converter<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span>Converter<span class="token punctuation">.</span><span class="token constant">EVENT_RESOLVE</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>context<span class="token operator">:</span> Context<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span> <span class="token punctuation">(</span>app<span class="token punctuation">.</span>options<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token string">"plugin-option"</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">"something"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token comment">// ...</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span></code></pre>
 <h3 id="converters" tabindex="-1">Converters</h3>
 <p>TypeDoc converts the syntax tree created by TypeScript into its own structure of <a href="https://typedoc.org/api/classes/reflection.html"><code>Reflection</code></a>s to allow themes and serialization to work with a standard object format. Conversion is done primarily in three files.</p>
 <ul>
@@ -150,16 +146,14 @@ This function should add any options the plugin accepts and add any listeners ne
 <p>Docs to come - TypeDoc's JSON output is defined according to serializers which support some or all reflections.</p>
 <h3 id="html-output" tabindex="-1">HTML Output</h3>
 <p>See <a href="https://github.com/TypeStrong/typedoc/blob/master/internal-docs/custom-themes.md">internal-docs/custom-themes.md</a> for creating a theme.</p>
-
-    </div>
-    <div class="col-sm-3 toc-container"></div>
-  </div>
 </div>
+        <div class="col-sm-3 toc-container"></div>
+    </div>
+</div>
+</section>
 
-    </section>
-
-    <footer>
+        <footer>
 </footer>
 
-  </body>
+    </body>
 </html>

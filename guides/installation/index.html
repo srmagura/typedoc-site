@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,8 @@
 </head>
 
 
-  <body>
-    <header>
+    <body>
+        <header>
     <div class="container">
         <a href="/" class="logo">TypeDoc</a>
         <nav>
@@ -39,12 +39,10 @@
 </header>
 
 
-    <section class="content" id="content">
-      
+        <section class="content" id="content">
 <div class="container main">
-  <div class="row">
-    <div class="col-sm-2">
-      <nav class="navigation">
+    <div class="row">
+        <div class="col-sm-2"><nav class="navigation">
   <ul>
     
       <li class="selected">
@@ -81,16 +79,42 @@
     
   </ul>
 </nav>
-
-    </div>
-    <div class="col-sm-7 typography">
-      <h1 id="installation" tabindex="-1">Installation</h1>
+</div>
+        <div class="col-sm-7 typography"><h1 id="installation" tabindex="-1">Installation</h1>
 <h2 id="requirements" tabindex="-1">Requirements</h2>
 <p>TypeDoc requires <a href="http://nodejs.org/">Node.js</a> to be installed on your system. If you haven't done that already, head
 over to their site and follow their install instructions.</p>
 <p>Installing TypeDoc is available as a node package. Using <code>npm</code> ensures that all relevant
 dependencies are setup correctly. You can choose to either install locally to your project or
 globally to the CLI.</p>
+<p>TypeDoc aims to support the two latest TypeScript releases for the latest release. Depending on the scale of breaking
+changes introduced in a new TypeScript version, a given version may support more versions of TypeScript.</p>
+<table>
+<thead>
+<tr>
+<th>TypeDoc Version</th>
+<th>TypeScript Version(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0.22</td>
+<td>4.0 through 4.4</td>
+</tr>
+<tr>
+<td>0.21</td>
+<td>4.0 through 4.4</td>
+</tr>
+<tr>
+<td>0.20</td>
+<td>3.9 through 4.2</td>
+</tr>
+<tr>
+<td>0.19</td>
+<td>3.9 through 4.0</td>
+</tr>
+</tbody>
+</table>
 <h2 id="local-installation-(preferred)" tabindex="-1">Local installation (preferred)</h2>
 <p>If you want to use TypeDoc from your command line in a project, use the API in your project code, or TypeDoc in an npm script, a local installation is the recommended approach. First install TypeDoc locally in your project:</p>
 <pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> typedoc --save-dev</code></pre>
@@ -106,7 +130,7 @@ arguments to define the format and destination of your documentation.</p>
 <h3 id="json-configuration" tabindex="-1">JSON Configuration</h3>
 <p>Instead of passing all arguments via the command line, the CLI also supports reading TypeDoc configuration from json files.</p>
 <h3 id="typedoc.json" tabindex="-1">typedoc.json</h3>
-<p>When running typedoc from the CLI, you can define any option except the entry files in a json file named <code>typedoc.json</code>.</p>
+<p>When running typedoc from the CLI, you can define options in a json file named <code>typedoc.json</code>.</p>
 <pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>    <span class="token property">"entryPoints"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"src/index.ts"</span><span class="token punctuation">]</span><span class="token punctuation">,</span><br>    <span class="token property">"out"</span><span class="token operator">:</span> <span class="token string">"docs"</span><br><span class="token punctuation">}</span></code></pre>
 <h3 id="tsconfig.json" tabindex="-1">tsconfig.json</h3>
 <p>TypeDoc options can be defined within an existing <code>tsconfig.json</code> file. Use a <code>typedocOptions</code> section to define
@@ -127,16 +151,14 @@ the node module and build the documentation yourself.</p>
 <pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> --save-dev gulp-typedoc</code></pre>
 <p>Update the following snippet with your configuration and add it to your <code>gulpfile.js</code> file:</p>
 <pre class="language-js"><code class="language-js"><span class="token keyword">var</span> typedoc <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"gulp-typedoc"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>gulp<span class="token punctuation">.</span><span class="token function">task</span><span class="token punctuation">(</span><span class="token string">"typedoc"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> gulp<span class="token punctuation">.</span><span class="token function">src</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"src/**/*.ts"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipe</span><span class="token punctuation">(</span><br>        <span class="token function">typedoc</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>            out<span class="token operator">:</span> <span class="token string">"docs/"</span><span class="token punctuation">,</span><br>            name<span class="token operator">:</span> <span class="token string">"My project title"</span><span class="token punctuation">,</span><br>        <span class="token punctuation">}</span><span class="token punctuation">)</span><br>    <span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-
-    </div>
-    <div class="col-sm-3 toc-container"></div>
-  </div>
 </div>
+        <div class="col-sm-3 toc-container"></div>
+    </div>
+</div>
+</section>
 
-    </section>
-
-    <footer>
+        <footer>
 </footer>
 
-  </body>
+    </body>
 </html>

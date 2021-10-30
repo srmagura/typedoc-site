@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+    <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,8 +21,8 @@
 </head>
 
 
-  <body>
-    <header>
+    <body>
+        <header>
     <div class="container">
         <a href="/" class="logo">TypeDoc</a>
         <nav>
@@ -39,12 +39,10 @@
 </header>
 
 
-    <section class="content" id="content">
-      
+        <section class="content" id="content">
 <div class="container main">
-  <div class="row">
-    <div class="col-sm-2">
-      <nav class="navigation">
+    <div class="row">
+        <div class="col-sm-2"><nav class="navigation">
   <ul>
     
       <li >
@@ -81,10 +79,8 @@
     
   </ul>
 </nav>
-
-    </div>
-    <div class="col-sm-7 typography">
-      <h1 id="options" tabindex="-1">Options</h1>
+</div>
+        <div class="col-sm-7 typography"><h1 id="options" tabindex="-1">Options</h1>
 <p>TypeDoc accepts most of the command line arguments that the TypeScript compiler accepts.
 All command line arguments that are passed in without a flag will be parsed as input files.
 Any options passed on the command line will override options set in a configuration file.</p>
@@ -172,8 +168,39 @@ An example of the JSON output from running TypeDoc on itself can be seen at <a h
 <pre class="language-bash"><code class="language-bash">$ typedoc --json out.json --pretty</code></pre>
 <p>Tells TypeDoc to pretty-format the JSON output.</p>
 <h3 id="emit" tabindex="-1">emit</h3>
-<pre class="language-bash"><code class="language-bash">$ typedoc --emit</code></pre>
+<pre class="language-bash"><code class="language-bash">$ typedoc --emit none</code></pre>
 <p>Instructs TypeDoc to write compiled output files as <code>tsc</code> does.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docs</code></td>
+<td>Emit documentation, but not JS (default).</td>
+</tr>
+<tr>
+<td><code>both</code></td>
+<td>Emit both documentation and JS.</td>
+</tr>
+<tr>
+<td><code>none</code></td>
+<td>Emit nothing, just convert and run validation.</td>
+</tr>
+<tr>
+<td><code>true</code></td>
+<td>Alias for <code>both</code>, for backwards compatibility. Will be removed in 0.23.</td>
+</tr>
+<tr>
+<td><code>false</code></td>
+<td>Alias for <code>docs</code>, for backwards compatibility. Will be removed in 0.23.</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>Note:</strong> If you have your TypeScript configured with <code>declaration: true</code> (through the <code>tsconfig.json</code>), the Typedoc emit <code>both</code> option will also generate type declaration files. This is because Typedoc falls back to typescript to generate the JS, this allows us to set the normal typescript options for type declarations and have Typedoc handle generating the <code>docs</code>, <code>js</code>, and <code>types</code> for us, all at once.</em></p>
 <h3 id="theme" tabindex="-1">theme</h3>
 <pre class="language-bash"><code class="language-bash">$ typedoc --theme default</code></pre>
 <p>Specify the theme that should be used. TypeDoc 0.22 contains architectural changes which breaks themes developed for TypeDoc 0.21 and earlier.</p>
@@ -246,12 +273,17 @@ by position in source will always produce a non-equal comparison.</p>
 </ul>
 <h3 id="gitrevision" tabindex="-1">gitRevision</h3>
 <pre class="language-bash"><code class="language-bash">$ typedoc --gitRevision <span class="token operator">&lt;</span>revision<span class="token operator">|</span>branch<span class="token operator">></span></code></pre>
-<p>Use specified revision or branch instead of the last revision for linking to GitHub source files.</p>
+<p>Use specified revision or branch instead of the last revision for linking to source files.</p>
 <h3 id="gitremote" tabindex="-1">gitRemote</h3>
 <pre class="language-bash"><code class="language-bash">$ typedoc --gitRemote <span class="token operator">&lt;</span>remote<span class="token operator">></span></code></pre>
-<p>Use the specified git remote instead of <code>origin</code> for linking to GitHub source files.
+<p>Use the specified git remote instead of <code>origin</code> for linking to source files in GitHub, Bitbucket, or GitLab.
 You can use <code>git remote</code> to view a list of valid remotes.
 If you are updating documentation for a forked package, you probably want to pass <code>--gitRemote upstream</code>.</p>
+<h3 id="githubpages" tabindex="-1">githubPages</h3>
+<pre class="language-bash"><code class="language-bash">$ typedoc --githubPages <span class="token boolean">false</span></code></pre>
+<p>When enabled, automatically add a <code>.nojekyll</code> file to the output directory to prevent GitHub Pages
+from processing your documentation site using Jekyll. If you have scoped packages, TypeDoc
+generates HTML files that start with <code>_</code> which are ignored by Jekyll. Defaults to <code>true</code>.</p>
 <h3 id="gaid" tabindex="-1">gaID</h3>
 <pre class="language-bash"><code class="language-bash">$ typedoc --gaID</code></pre>
 <p>Set the Google Analytics tracking ID and activate tracking code.</p>
@@ -306,19 +338,18 @@ If you are updating documentation for a forked package, you probably want to pas
 <pre class="language-bash"><code class="language-bash">$ typedoc --listInvalidSymbolLinks</code></pre>
 <p>Tells TypeDoc to report any <code>{@link symbol}</code> links that are broken.</p>
 <h3 id="intentionallynotexported" tabindex="-1">intentionallyNotExported</h3>
-<p>Lists symbols which are intentionally excluded from the documentation output and should not produce warnings</p>
+<p>Lists symbols which are intentionally excluded from the documentation output and should not produce warnings.
+Entries may optionally specify a file name before a colon to only suppress warnings for symbols declared in a specific file.</p>
 <p>typedoc.json:</p>
-<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>    <span class="token property">"intentionallyNotExported"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"InternalClass"</span><span class="token punctuation">,</span> <span class="token string">"OtherInternal"</span><span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
-
-    </div>
-    <div class="col-sm-3 toc-container"></div>
-  </div>
+<pre class="language-json"><code class="language-json"><span class="token punctuation">{</span><br>    <span class="token property">"intentionallyNotExported"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"InternalClass"</span><span class="token punctuation">,</span> <span class="token string">"src/other.ts:OtherInternal"</span><span class="token punctuation">]</span><br><span class="token punctuation">}</span></code></pre>
 </div>
+        <div class="col-sm-3 toc-container"></div>
+    </div>
+</div>
+</section>
 
-    </section>
-
-    <footer>
+        <footer>
 </footer>
 
-  </body>
+    </body>
 </html>
